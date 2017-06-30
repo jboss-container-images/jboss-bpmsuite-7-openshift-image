@@ -4,5 +4,5 @@ NOTE: Extends link:https://github.com/jboss-container-images/jboss-bpmsuite-7-im
 
 # License
 
-See link:LICENSE[LICENSE] file.
+See link:../LICENSE[LICENSE] file.
 
