@@ -1,13 +1,13 @@
-name: "jboss-bpmsuite-7/bpmsuite70-businesscentral-openshift"
-description: "Red Hat JBoss BPM Suite 7.0 Business Central OpenShift container image"
+name: "jboss-bpmsuite-7/bpmsuite70-executionserver-openshift"
+description: "Red Hat JBoss BPM Suite 7.0 Execution Server OpenShift container image"
 version: "1.0"
-from: "jboss-bpmsuite-7/bpmsuite70-businesscentral:latest"
+from: "jboss-bpmsuite-7/bpmsuite70-executionserver:latest"
 user: 185
 labels:
     - name: "io.k8s.description"
-      value: "Platform for running JBoss BPM Suite Business Central"
+      value: "Platform for running JBoss BPM Suite Execution Server"
     - name: "io.k8s.display-name"
-      value: "JBoss BPM Suite Business Central 7.0"
+      value: "JBoss BPM Suite Execution Server 7.0"
     - name: "io.openshift.expose-services"
       value: "8080:http"
     - name: "io.openshift.tags"
@@ -25,24 +25,60 @@ envs:
       value: "true"
     - name: AB_JOLOKIA_HTTPS
       value: "true"
-    - name: "KIE_ADMIN_USER"
-      example: "adminUser"
-      description: "KIE administrator username"
-    - name: "KIE_ADMIN_PWD"
-      example: "admin1!"
-      description: "KIE administrator password"
-    - name: "KIE_SERVER_CONTROLLER_USER"
-      example: "controllerUser"
-      description: "KIE controller username"
-    - name: "KIE_SERVER_CONTROLLER_PWD"
-      example: "controller1!"
-      description: "KIE controller password"
+    - name: "KIE_SERVER_PROTOCOL"
+      example: "http"
+      description: "KIE execution server protocol (Used to set the org.kie.server.location system property)"
+    - name: "KIE_SERVER_HOST"
+      example: "localhost"
+      description: "KIE execution server host (Used to set the org.kie.server.location system property)"
+    - name: "KIE_SERVER_PORT"
+      example: "8080"
+      description: "KIE execution server port (Used to set the org.kie.server.location system property)"
     - name: "KIE_SERVER_USER"
       example: "executionUser"
       description: "KIE execution server username (Sets the org.kie.server.user system property)"
     - name: "KIE_SERVER_PWD"
       example: "execution1!"
       description: "KIE execution server password (Sets the org.kie.server.pwd system property)"
+    - name: "KIE_SERVER_DOMAIN"
+      example: "other"
+      description: "KIE execution server security domain (Sets the org.kie.server.domain system property)"
+    - name: "KIE_SERVER_BYPASS_AUTH_USER"
+      example: "false"
+      description: "KIE execution server bypass auth user (Sets the org.kie.server.bypass.auth.user system property)"
+    - name: "KIE_SERVER_CONTROLLER_PROTOCOL"
+      example: "http"
+      description: "KIE server controller protocol (Used to set the org.kie.server.controller system property)"
+    - name: "KIE_SERVER_CONTROLLER_SERVICE"
+      example: "buscentr-myapp"
+      description: "KIE server controller service (Used to set the org.kie.server.controller system property if host and port aren't set)"
+    - name: "KIE_SERVER_CONTROLLER_HOST"
+      example: "localhost"
+      description: "KIE server controller host (Used to set the org.kie.server.controller system property)"
+    - name: "KIE_SERVER_CONTROLLER_PORT"
+      example: "8080"
+      description: "KIE server controller port (Used to set the org.kie.server.controller system property)"
+    - name: "KIE_SERVER_CONTROLLER_USER"
+      example: "controllerUser"
+      description: "KIE server controller username (Sets the org.kie.server.controller.user system property)"
+    - name: "KIE_SERVER_CONTROLLER_PWD"
+      example: "controller1!"
+      description: "KIE server controller password (Sets the org.kie.server.controller.pwd system property)"
+    - name: "KIE_SERVER_PERSISTENCE_DIALECT"
+      example: "org.hibernate.dialect.H2Dialect"
+      description: "KIE execution server persistence dialect (Sets the org.kie.server.persistence.dialect system property)"
+    - name: "KIE_SERVER_PERSISTENCE_DS"
+      example: "java:/jboss/datasources/ExampleDS"
+      description: "KIE execution server persistence datasource (Sets the org.kie.server.persistence.ds system property)"
+    - name: "KIE_SERVER_PERSISTENCE_TM"
+      example: "org.hibernate.engine.transaction.jta.platform.internal.JBossAppServerJtaPlatform"
+      description: "KIE execution server persistence transaction manager (Sets the org.kie.server.persistence.tm system property)"
+    - name: "KIE_MBEANS"
+      example: "enabled"
+      description: "KIE execution server mbeans enabled/disabled (Sets the kie.mbeans and kie.scanner.mbeans system properties)"
+    - name: "DROOLS_SERVER_FILTER_CLASSES"
+      example: "true"
+      description: "KIE execution server class filtering (Sets the org.drools.server.filter.classes system property)"
     - name: "OPENSHIFT_KUBE_PING_NAMESPACE"
       example: "myproject"
       description: "Clustering project namespace."
@@ -201,30 +237,30 @@ packages:
     - python-enum34
     - PyYAML
 sources:
-    - artifact: https://maven.repository.redhat.com/ga/org/jolokia/jolokia-jvm/1.3.6.redhat-1/jolokia-jvm-1.3.6.redhat-1-agent.jar
-      md5: 75e5b5ba0b804cd9def9f20a70af649f
-    - artifact: javax.json-1.0.4.jar
-      md5: 569870f975deeeb6691fcb9bc02a9555
-    - artifact: jboss-logmanager-ext-1.0.0.Alpha2-redhat-1.jar
-      md5: 7c743e35463db5f55f415dd666d705c5
-    - artifact: openshift-ping-common-1.1.4.Final-redhat-1.jar
-      md5: b01126ed440b854653696b86c5eba325
-    - artifact: openshift-ping-dns-1.1.4.Final-redhat-1.jar
-      md5: 7e34b050c4e7fe2afbd3893a1fa4e558
-    - artifact: openshift-ping-kube-1.1.4.Final-redhat-1.jar
-      md5: 7681e42eda03d9ad990fbe39c96677a4
-    - artifact: oauth-20100527.jar
-      md5: 91c7c70579f95b7ddee95b2143a49b41
-    - artifact: activemq-rar-5.11.0.redhat-621084.rar
-      md5: 207e17ac8102c93233fe2764d1fe8499
-    - artifact: hawkular-javaagent-1.0.0.CR5-redhat-1-shaded.jar
-      md5: f5d3e0220e10c706ef86af84771cf74e
-    - artifact: rh-sso-7.0.0-eap7-adapter.zip
-      md5: 1542c1014d9ebc24522839a5fa8bee4d
-    - artifact: rh-sso-7.0.0-saml-eap7-adapter.zip
-      md5: ce858a47c707b362a968ffd5c66768dd
+    - url: https://maven.repository.redhat.com/ga/org/jolokia/jolokia-jvm/1.3.6.redhat-1/jolokia-jvm-1.3.6.redhat-1-agent.jar
+      md5sum: 75e5b5ba0b804cd9def9f20a70af649f
+    - url: javax.json-1.0.4.jar
+      md5sum: 569870f975deeeb6691fcb9bc02a9555
+    - url: jboss-logmanager-ext-1.0.0.Alpha2-redhat-1.jar
+      md5sum: 7c743e35463db5f55f415dd666d705c5
+    - url: openshift-ping-common-1.1.4.Final-redhat-1.jar
+      md5sum: b01126ed440b854653696b86c5eba325
+    - url: openshift-ping-dns-1.1.4.Final-redhat-1.jar
+      md5sum: 7e34b050c4e7fe2afbd3893a1fa4e558
+    - url: openshift-ping-kube-1.1.4.Final-redhat-1.jar
+      md5sum: 7681e42eda03d9ad990fbe39c96677a4
+    - url: oauth-20100527.jar
+      md5sum: 91c7c70579f95b7ddee95b2143a49b41
+    - url: activemq-rar-5.11.0.redhat-621084.rar
+      md5sum: 207e17ac8102c93233fe2764d1fe8499
+    - url: hawkular-javaagent-1.0.0.CR5-redhat-1-shaded.jar
+      md5sum: f5d3e0220e10c706ef86af84771cf74e
+    - url: rh-sso-7.0.0-eap7-adapter.zip
+      md5sum: 1542c1014d9ebc24522839a5fa8bee4d
+    - url: rh-sso-7.0.0-saml-eap7-adapter.zip
+      md5sum: ce858a47c707b362a968ffd5c66768dd
 cct:
-    - name: BPMS
+    - name: BxMS
       modules:
           - url: https://github.com/jboss-openshift/cct_module
       changes:
@@ -301,7 +337,7 @@ cct:
                 - configure_passwd_sh:
           - cct_module.os-bpmsuite-common:
                 - configure_sh:
-          - cct_module.os-bpmsuite-businesscentral:
+          - cct_module.os-bpmsuite-executionserver:
                 - configure_sh:
 dogen:
     version: 2.1.0

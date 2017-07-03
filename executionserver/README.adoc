@@ -1,4 +1,4 @@
-# Red Hat JBoss BPM Suite 7.0 Business Central OpenShift container image
+# Red Hat JBoss BPM Suite 7.0 Execution Server OpenShift container image
 
 NOTE: Extends link:https://github.com/jboss-container-images/jboss-bpmsuite-7-image[Red Hat JBoss BPM Suite 7.0 container image]
 
