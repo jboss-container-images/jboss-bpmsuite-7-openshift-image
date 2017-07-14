@@ -1,0 +1,16 @@
+name: "jboss-bpmsuite-7/bpmsuite70-smartrouter-openshift"
+description: "Red Hat JBoss BPM Suite 7.0 Smart Router OpenShift container image"
+version: "1.0"
+from: "jboss-bpmsuite-7/bpmsuite70-smartrouter:latest"
+user: 185
+labels:
+    - name: "io.k8s.description"
+      value: "Platform for running JBoss BPM Suite Smart Router"
+    - name: "io.k8s.display-name"
+      value: "JBoss BPM Suite Smart Router 7.0"
+    - name: "io.openshift.expose-services"
+      value: "9000:http"
+    - name: "io.openshift.tags"
+      value: "builder,javaee,eap,eap7"
+dogen:
+    version: 2.2.1
