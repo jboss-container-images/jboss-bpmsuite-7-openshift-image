@@ -11,6 +11,6 @@ labels:
     - name: "io.openshift.expose-services"
       value: "9000:http"
     - name: "io.openshift.tags"
-      value: "builder,javaee,eap,eap7"
+      value: "builder,javaee,bpmsuite,bpmsuite7"
 dogen:
     version: 2.2.1
