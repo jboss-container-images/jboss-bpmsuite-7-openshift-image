@@ -1,13 +1,13 @@
-name: "jboss-bpmsuite-7/bpmsuite70-businesscentral-openshift"
-description: "Red Hat JBoss BPM Suite 7.0 Business Central OpenShift container image"
+name: "jboss-bpmsuite-7/bpmsuite70-standalonecontroller-openshift"
+description: "Red Hat JBoss BPM Suite 7.0 Standalone Controller OpenShift container image"
 version: "1.0"
-from: "jboss-bpmsuite-7/bpmsuite70-businesscentral:latest"
+from: "jboss-bpmsuite-7/bpmsuite70-standalonecontroller:latest"
 user: 185
 labels:
     - name: "io.k8s.description"
-      value: "Platform for running JBoss BPM Suite Business Central"
+      value: "Platform for running JBoss BPM Suite Standalone Controller"
     - name: "io.k8s.display-name"
-      value: "JBoss BPM Suite Business Central 7.0"
+      value: "JBoss BPM Suite Standalone Controller 7.0"
     - name: "io.openshift.expose-services"
       value: "8080:http"
     - name: "io.openshift.tags"
@@ -25,75 +25,18 @@ envs:
       value: "true"
     - name: AB_JOLOKIA_HTTPS
       value: "true"
-    - name: "KIE_ADMIN_USER"
-      example: "adminUser"
-      description: "KIE administrator username"
-    - name: "KIE_ADMIN_PWD"
-      example: "admin1!"
-      description: "KIE administrator password"
-    - name: "KIE_SERVER_CONTROLLER_USER"
-      example: "controllerUser"
-      description: "KIE controller username"
-    - name: "KIE_SERVER_CONTROLLER_PWD"
-      example: "controller1!"
-      description: "KIE controller password"
     - name: "KIE_SERVER_USER"
       example: "executionUser"
-      description: "KIE execution server username (Sets the org.kie.server.user system property)"
+      description: "KIE execution servers username (Sets the org.kie.server.user system property)"
     - name: "KIE_SERVER_PWD"
       example: "execution1!"
-      description: "KIE execution server password (Sets the org.kie.server.pwd system property)"
-    - name: "MAVEN_REPOS"
-      example: "dev-one,qe-two"
-      description: "If set, multi-repo support is enabled, and other MAVEN_REPO_* variables will be prefixed. For example: DEV_ONE_MAVEN_REPO_URL and QE_TWO_MAVEN_REPO_URL"
-    - name: "MAVEN_REPO_URL"
-      example: "http://repo.example.com:8080/maven2/"
-      description: "Maven repository url (fully defined)"
-    - name: "MAVEN_REPO_SERVICE"
-      example: "buscentr-myapp"
-      description: "Maven repository service to lookup if MAVEN_REPO_URL not specified"
-    - name: "MAVEN_REPO_PROTOCOL"
-      example: "http"
-      description: "Maven repository protocol (if not using fully defined url; will fallback to service)"
-    - name: "MAVEN_REPO_HOST"
-      example: "repo.example.com"
-      description: "Maven repository host (if not using fully defined url; will fallback to service)"
-    - name: "MAVEN_REPO_PORT"
-      example: "8080"
-      description: "Maven repository port (if not using fully defined url; will fallback to service)"
-    - name: "MAVEN_REPO_PATH"
-      example: "/maven2/"
-      description: "Maven repository path (if not using fully defined url; will fallback to service)"
-    - name: "MAVEN_REPO_ID"
-      example: "my-repo"
-      description: "Maven repository id"
-    - name: "MAVEN_REPO_USERNAME"
-      example: "mavenUser"
-      description: "Maven repository username"
-    - name: "MAVEN_REPO_PASSWORD"
-      example: "maven1!"
-      description: "Maven repository password"
-    - name: "MAVEN_REPO_PRIVATE_KEY"
-      example: "${user.home}/.ssh/id_dsa"
-      description: "Maven repository private key"
-    - name: "MAVEN_REPO_PASSPHRASE"
-      example: "maven1!"
-      description: "Maven repository passphrase"
-    - name: "MAVEN_REPO_LAYOUT"
-      example: "default"
-      description: "Maven repository layout"
-    - name: "MAVEN_REPO_RELEASES_ENABLED"
-      example: "true"
-      description: "Maven repository releases enabled"
-    - name: "MAVEN_REPO_RELEASES_UPDATE_POLICY"
-      example: "always"
-      description: "Maven repository releases update policy"
-    - name: "MAVEN_REPO_SNAPSHOTS_ENABLED"
-      example: "true"
-      description: "Maven repository snapshots enabled"
-    - name: "MAVEN_REPO_SNAPSHOTS_UPDATE_POLICY"
-      example: "always"
-      description: "Maven repository snapshots update policy"
+      description: "KIE execution servers password (Sets the org.kie.server.pwd system property)"
+    - name: "KIE_CONTROLLER_USER"
+      example: "controllerUser"
+      description: "KIE standalone controller username (Used to register the user in the EAP)"
+    - name: "KIE_CONTROLLER_PWD"
+      example: "controller1!"
+      description: "KIE standalone controller password (Used to register the user in the EAP)"
     - name: "OPENSHIFT_KUBE_PING_NAMESPACE"
       example: "myproject"
       description: "Clustering project namespace."
@@ -252,30 +195,30 @@ packages:
     - python-enum34
     - PyYAML
 sources:
-    - artifact: https://maven.repository.redhat.com/ga/org/jolokia/jolokia-jvm/1.3.6.redhat-1/jolokia-jvm-1.3.6.redhat-1-agent.jar
-      md5: 75e5b5ba0b804cd9def9f20a70af649f
-    - artifact: javax.json-1.0.4.jar
-      md5: 569870f975deeeb6691fcb9bc02a9555
-    - artifact: jboss-logmanager-ext-1.0.0.Alpha2-redhat-1.jar
-      md5: 7c743e35463db5f55f415dd666d705c5
+    - url: https://maven.repository.redhat.com/ga/org/jolokia/jolokia-jvm/1.3.6.redhat-1/jolokia-jvm-1.3.6.redhat-1-agent.jar
+      md5sum: 75e5b5ba0b804cd9def9f20a70af649f
+    - url: javax.json-1.0.4.jar
+      md5sum: 569870f975deeeb6691fcb9bc02a9555
+    - url: jboss-logmanager-ext-1.0.0.Alpha2-redhat-1.jar
+      md5sum: 7c743e35463db5f55f415dd666d705c5
     - artifact: openshift-ping-common-1.1.5.Final-redhat-1.jar
       md5: e27cdcf626ab1366c8d7d18ebd399ec4
     - artifact: openshift-ping-dns-1.1.5.Final-redhat-1.jar
       md5: ecab0d5ad969cb001e778305485b4640
     - artifact: openshift-ping-kube-1.1.5.Final-redhat-1.jar
       md5: 2f74acc3efc68e3781b7004f5a683fdc
-    - artifact: oauth-20100527.jar
-      md5: 91c7c70579f95b7ddee95b2143a49b41
-    - artifact: activemq-rar-5.11.0.redhat-621084.rar
-      md5: 207e17ac8102c93233fe2764d1fe8499
-    - artifact: hawkular-javaagent-1.0.0.CR5-redhat-1-shaded.jar
-      md5: f5d3e0220e10c706ef86af84771cf74e
-    - artifact: rh-sso-7.0.0-eap7-adapter.zip
-      md5: 1542c1014d9ebc24522839a5fa8bee4d
-    - artifact: rh-sso-7.0.0-saml-eap7-adapter.zip
-      md5: ce858a47c707b362a968ffd5c66768dd
+    - url: oauth-20100527.jar
+      md5sum: 91c7c70579f95b7ddee95b2143a49b41
+    - url: activemq-rar-5.11.0.redhat-621084.rar
+      md5sum: 207e17ac8102c93233fe2764d1fe8499
+    - url: hawkular-javaagent-1.0.0.CR5-redhat-1-shaded.jar
+      md5sum: f5d3e0220e10c706ef86af84771cf74e
+    - url: rh-sso-7.0.0-eap7-adapter.zip
+      md5sum: 1542c1014d9ebc24522839a5fa8bee4d
+    - url: rh-sso-7.0.0-saml-eap7-adapter.zip
+      md5sum: ce858a47c707b362a968ffd5c66768dd
 cct:
-    - name: BPMS
+    - name: BxMS
       modules:
           - url: https://github.com/jboss-openshift/cct_module
       changes:
@@ -323,9 +266,6 @@ cct:
           - cct_module.os-eap-probes:
                 - user: 185
                 - configure_sh:
-          - cct_module.jboss-maven:
-                - user: 185
-                - configure_sh:
           - cct_module.os-eap-db-drivers:
                 - user: 185
                 - configure_sh:
@@ -355,7 +295,7 @@ cct:
                 - configure_passwd_sh:
           - cct_module.os-bpmsuite-common:
                 - configure_sh:
-          - cct_module.os-bpmsuite-businesscentral:
+          - cct_module.os-bpmsuite-standalonecontroller:
                 - configure_sh:
 dogen:
     version: 2.2.1
