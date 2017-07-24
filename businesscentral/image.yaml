@@ -303,6 +303,9 @@ cct:
           - cct_module.os-eap7-ping:
                 - user: 185
                 - configure_sh:
+          - cct_module.os-eap70-openshift:
+                - user: 185
+                - configure_sh:
           - cct_module.os-eap-activemq-rar:
                 - user: 185
                 - configure_sh:
