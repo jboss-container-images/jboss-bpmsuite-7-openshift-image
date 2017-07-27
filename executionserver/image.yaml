@@ -394,7 +394,7 @@ cct:
           - cct_module.os-bpmsuite-executionserver:
                 - configure_sh:
 dogen:
-    version: 2.2.1
+    version: 2.4.0
     plugins:
         cct:
             verbose: true
