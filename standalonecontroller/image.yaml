@@ -298,7 +298,7 @@ cct:
           - cct_module.os-bpmsuite-standalonecontroller:
                 - configure_sh:
 dogen:
-    version: 2.4.0
+    version: 2.4.1
     plugins:
         cct:
             verbose: true

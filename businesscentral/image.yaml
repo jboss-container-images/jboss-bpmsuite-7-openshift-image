@@ -358,7 +358,7 @@ cct:
           - cct_module.os-bpmsuite-businesscentral:
                 - configure_sh:
 dogen:
-    version: 2.4.0
+    version: 2.4.1
     plugins:
         cct:
             verbose: true

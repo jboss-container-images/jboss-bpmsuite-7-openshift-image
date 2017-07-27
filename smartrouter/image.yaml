@@ -13,4 +13,4 @@ labels:
     - name: "io.openshift.tags"
       value: "builder,javaee,bpmsuite,bpmsuite7"
 dogen:
-    version: 2.2.1
+    version: 2.4.1
