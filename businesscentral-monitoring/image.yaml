@@ -12,11 +12,7 @@ labels:
       value: "8080:http"
     - name: "io.openshift.tags"
       value: "javaee,eap,eap7,bpmsuite,bpmsuite7"
-    - name: "io.openshift.s2i.scripts-url"
-      value: "image:///usr/local/s2i"
 envs:
-    - name: "STI_BUILDER"
-      value: "jee"
     - name: "JBOSS_MODULES_SYSTEM_PKGS"
       value: "org.jboss.logmanager,jdk.nashorn.api"
     - name: "AB_JOLOKIA_PASSWORD_RANDOM"

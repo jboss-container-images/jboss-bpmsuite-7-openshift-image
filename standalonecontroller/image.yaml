@@ -11,12 +11,8 @@ labels:
     - name: "io.openshift.expose-services"
       value: "8080:http"
     - name: "io.openshift.tags"
-      value: "builder,javaee,eap,eap7,bpmsuite,bpmsuite7"
-    - name: "io.openshift.s2i.scripts-url"
-      value: "image:///usr/local/s2i"
+      value: "javaee,eap,eap7,bpmsuite,bpmsuite7"
 envs:
-    - name: "STI_BUILDER"
-      value: "jee"
     - name: "JBOSS_MODULES_SYSTEM_PKGS"
       value: "org.jboss.logmanager,jdk.nashorn.api"
     - name: "AB_JOLOKIA_PASSWORD_RANDOM"
@@ -197,28 +193,28 @@ packages:
     - python-enum34
     - PyYAML
 sources:
-    - url: https://maven.repository.redhat.com/ga/org/jolokia/jolokia-jvm/1.3.6.redhat-1/jolokia-jvm-1.3.6.redhat-1-agent.jar
-      md5sum: 75e5b5ba0b804cd9def9f20a70af649f
-    - url: javax.json-1.0.4.jar
-      md5sum: 569870f975deeeb6691fcb9bc02a9555
-    - url: jboss-logmanager-ext-1.0.0.Alpha2-redhat-1.jar
-      md5sum: 7c743e35463db5f55f415dd666d705c5
+    - artifact: https://maven.repository.redhat.com/ga/org/jolokia/jolokia-jvm/1.3.6.redhat-1/jolokia-jvm-1.3.6.redhat-1-agent.jar
+      md5: 75e5b5ba0b804cd9def9f20a70af649f
+    - artifact: javax.json-1.0.4.jar
+      md5: 569870f975deeeb6691fcb9bc02a9555
+    - artifact: jboss-logmanager-ext-1.0.0.Alpha2-redhat-1.jar
+      md5: 7c743e35463db5f55f415dd666d705c5
     - artifact: openshift-ping-common-1.1.5.Final-redhat-1.jar
       md5: e27cdcf626ab1366c8d7d18ebd399ec4
     - artifact: openshift-ping-dns-1.1.5.Final-redhat-1.jar
       md5: ecab0d5ad969cb001e778305485b4640
     - artifact: openshift-ping-kube-1.1.5.Final-redhat-1.jar
       md5: 2f74acc3efc68e3781b7004f5a683fdc
-    - url: oauth-20100527.jar
-      md5sum: 91c7c70579f95b7ddee95b2143a49b41
+    - artifact: oauth-20100527.jar
+      md5: 91c7c70579f95b7ddee95b2143a49b41
     - artifact: https://maven.repository.redhat.com/ga/org/apache/activemq/activemq-rar/5.11.0.redhat-630262/activemq-rar-5.11.0.redhat-630262.rar
       md5: d0c70b9b2da1f02473d52f59d1d14b0b
-    - url: hawkular-javaagent-1.0.0.CR5-redhat-1-shaded.jar
-      md5sum: f5d3e0220e10c706ef86af84771cf74e
-    - url: rh-sso-7.0.0-eap7-adapter.zip
-      md5sum: 1542c1014d9ebc24522839a5fa8bee4d
-    - url: rh-sso-7.0.0-saml-eap7-adapter.zip
-      md5sum: ce858a47c707b362a968ffd5c66768dd
+    - artifact: hawkular-javaagent-1.0.0.CR5-redhat-1-shaded.jar
+      md5: f5d3e0220e10c706ef86af84771cf74e
+    - artifact: rh-sso-7.0.0-eap7-adapter.zip
+      md5: 1542c1014d9ebc24522839a5fa8bee4d
+    - artifact: rh-sso-7.0.0-saml-eap7-adapter.zip
+      md5: ce858a47c707b362a968ffd5c66768dd
 cct:
     - name: BxMS
       modules:
