@@ -39,12 +39,15 @@ envs:
     - name: "KIE_SERVER_PORT"
       example: "8080"
       description: "KIE execution server port (Used to set the org.kie.server.location system property)"
+    - name: "KIE_SERVER_TOKEN"
+      example: "dasd373egds"
+      description: "KIE server token for bearer authentication (Sets the org.kie.server.token system property)"
     - name: "KIE_SERVER_USER"
       example: "executionUser"
-      description: "KIE execution server username (Sets the org.kie.server.user system property)"
+      description: "KIE execution server username for basic authentication (Sets the org.kie.server.user system property)"
     - name: "KIE_SERVER_PWD"
       example: "execution1!"
-      description: "KIE execution server password (Sets the org.kie.server.pwd system property)"
+      description: "KIE execution server password for basic authentication (Sets the org.kie.server.pwd system property)"
     - name: "KIE_SERVER_DOMAIN"
       example: "other"
       description: "KIE execution server security domain (Sets the org.kie.server.domain system property)"
@@ -72,12 +75,15 @@ envs:
     - name: "KIE_SERVER_CONTROLLER_PORT"
       example: "8080"
       description: "KIE server controller port (Used to set the org.kie.server.controller system property)"
+    - name: "KIE_SERVER_CONTROLLER_TOKEN"
+      example: "dasd373egds"
+      description: "KIE server controller token for bearer authentication (Sets the org.kie.server.controller.token system property)"
     - name: "KIE_SERVER_CONTROLLER_USER"
       example: "controllerUser"
-      description: "KIE server controller username (Sets the org.kie.server.controller.user system property)"
+      description: "KIE server controller username for basic authentication (Sets the org.kie.server.controller.user system property)"
     - name: "KIE_SERVER_CONTROLLER_PWD"
       example: "controller1!"
-      description: "KIE server controller password (Sets the org.kie.server.controller.pwd system property)"
+      description: "KIE server controller password for basic authentication (Sets the org.kie.server.controller.pwd system property)"
     - name: "KIE_SERVER_PERSISTENCE_DIALECT"
       example: "org.hibernate.dialect.H2Dialect"
       description: "KIE execution server persistence dialect (Sets the org.kie.server.persistence.dialect system property)"
@@ -355,7 +361,7 @@ sources:
     - artifact: https://maven.repository.redhat.com/ga/org/slf4j/slf4j-simple/1.7.7.redhat-2/slf4j-simple-1.7.7.redhat-2.jar
       md5: 892233d3b702492c3a93034e3ee9c986
 cct:
-    - name: BxMS
+    - name: BPMS
       modules:
           - url: https://github.com/jboss-openshift/cct_module
       changes:
