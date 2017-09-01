@@ -1,6 +1,6 @@
 name: "jboss-bpmsuite-7/bpmsuite70-standalonecontroller-openshift"
 description: "Red Hat JBoss BPM Suite 7.0 Standalone Controller OpenShift container image"
-version: "1.0"
+version: "1.0.Beta01"
 from: "jboss-bpmsuite-7/bpmsuite70-standalonecontroller:latest"
 user: 185
 labels:
