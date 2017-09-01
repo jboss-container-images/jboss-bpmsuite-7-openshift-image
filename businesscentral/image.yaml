@@ -1,6 +1,6 @@
 name: "jboss-bpmsuite-7/bpmsuite70-businesscentral-openshift"
 description: "Red Hat JBoss BPM Suite 7.0 Business Central OpenShift container image"
-version: "1.0"
+version: "1.0.Beta01"
 from: "jboss-bpmsuite-7/bpmsuite70-businesscentral:latest"
 user: 185
 labels:
