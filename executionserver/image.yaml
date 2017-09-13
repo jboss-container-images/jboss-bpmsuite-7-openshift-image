@@ -1,6 +1,6 @@
 name: "jboss-bpmsuite-7/bpmsuite70-executionserver-openshift"
 description: "Red Hat JBoss BPM Suite 7.0 Execution Server OpenShift container image"
-version: "1.0.Beta01"
+version: "1.0"
 from: "jboss-bpmsuite-7/bpmsuite70-executionserver:latest"
 user: 185
 labels:
