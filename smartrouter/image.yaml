@@ -1,8 +1,9 @@
+schema_version: 1
+
 name: "jboss-bpmsuite-7/bpmsuite70-smartrouter-openshift"
 description: "Red Hat JBoss BPM Suite 7.0 Smart Router OpenShift container image"
 version: "1.0"
 from: "jboss-bpmsuite-7/bpmsuite70-smartrouter:latest"
-user: 185
 labels:
     - name: "io.k8s.description"
       value: "Platform for running JBoss BPM Suite Smart Router"
@@ -54,21 +55,17 @@ envs:
       description: "KIE server controller password for basic authentication (Sets the org.kie.server.controller.pwd system property)"
 ports:
     - value: 9000
-cmd:
-    - "/opt/bpmsuite-smartrouter/openshift-launch.sh"
-sources:
-    - artifact: https://maven.repository.redhat.com/ga/org/slf4j/slf4j-simple/1.7.7.redhat-2/slf4j-simple-1.7.7.redhat-2.jar
+modules:
+      repositories:
+          - git:
+                  url: https://github.com/jboss-openshift/cct_module.git
+                  ref: master
+      install:
+          - name: os-bpmsuite-smartrouter
+artifacts:
+    - url: https://maven.repository.redhat.com/ga/org/slf4j/slf4j-simple/1.7.7.redhat-2/slf4j-simple-1.7.7.redhat-2.jar
       md5: 892233d3b702492c3a93034e3ee9c986
-cct:
-    - name: BPMS
-      modules:
-          - url: https://github.com/jboss-openshift/cct_module
-      changes:
-          - cct_module.os-bpmsuite-smartrouter:
-                - configure_sh:
-dogen:
-    version: 2.4.1
-    plugins:
-        cct:
-            verbose: true
-
+run:
+      user: 185
+      cmd:
+          - "/opt/bpmsuite-smartrouter/openshift-launch.sh"
