@@ -223,6 +223,7 @@ modules:
           - name: os-eap7-launch
           - name: os-eap-logging
           - name: os-eap-probes
+          - name: jboss-maven
           - name: os-eap-db-drivers
           - name: os-eap-sso
           - name: os-eap70-sso
@@ -243,7 +244,6 @@ packages:
           - rh-mongodb32-mongo-java-driver
           - postgresql-jdbc
           - mysql-connector-java
-          - rh-maven33
           - hostname
           - python-requests
           - python-enum34

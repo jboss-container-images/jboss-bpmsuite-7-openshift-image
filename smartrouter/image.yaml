@@ -62,6 +62,7 @@ modules:
                   ref: master
       install:
           - name: os-bpmsuite-smartrouter
+          - name: jboss-maven
 artifacts:
     - url: https://maven.repository.redhat.com/ga/org/slf4j/slf4j-simple/1.7.7.redhat-2/slf4j-simple-1.7.7.redhat-2.jar
       md5: 892233d3b702492c3a93034e3ee9c986
